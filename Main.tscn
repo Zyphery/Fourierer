@@ -1,0 +1,243 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqfcuk1y0ijj8"]
+
+[ext_resource type="Script" path="res://Main.cs" id="1_sa1m3"]
+[ext_resource type="PackedScene" uid="uid://cde2387j0vpqh" path="res://item.tscn" id="2_luch8"]
+[ext_resource type="PackedScene" uid="uid://bw3q3idwwuh3h" path="res://fourier_step.tscn" id="3_gohan"]
+
+[sub_resource type="StyleBox" id="StyleBox_l4ex7"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrpmn"]
+bg_color = Color(0, 0, 0, 0.196078)
+
+[node name="Main" type="Node" node_paths=PackedStringArray("UI_ItemContainer", "UI_Time", "UI_Speed", "VS_Tracer", "VS_ObjectContainer")]
+script = ExtResource("1_sa1m3")
+UI_ItemContainer = NodePath("CanvasLayer/UI/RightPanel/MarginContainer/PanelContainer/ScrollContainer/Container")
+UI_ItemScene = ExtResource("2_luch8")
+UI_Time = NodePath("CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Time/TimeValue")
+UI_Speed = NodePath("CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Speed/SpeedValue")
+VS_Tracer = NodePath("Visual/Tracer")
+VS_ObjectContainer = NodePath("Visual")
+VS_ObjectScene = ExtResource("3_gohan")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopPanel" type="Control" parent="CanvasLayer/UI"]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 35.0
+grow_horizontal = 2
+
+[node name="Background" type="Panel" parent="CanvasLayer/UI/TopPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RightPanel" type="Control" parent="CanvasLayer/UI"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -300.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="CanvasLayer/UI/RightPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="VSplitContainer" parent="CanvasLayer/UI/RightPanel"]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = 550
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/UI/RightPanel/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBox_l4ex7")
+
+[node name="Background" type="Panel" parent="CanvasLayer/UI/RightPanel/MarginContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_nrpmn")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/UI/RightPanel/MarginContainer/PanelContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="Container" type="VBoxContainer" parent="CanvasLayer/UI/RightPanel/MarginContainer/PanelContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI/RightPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="FlowContainer" type="VBoxContainer" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="Trace" type="HBoxContainer" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer"]
+layout_mode = 2
+
+[node name="Trace" type="CheckButton" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Trace"]
+layout_mode = 2
+text = "Trace"
+
+[node name="TraceColor" type="ColorPickerButton" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Trace"]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.419608, 0.694118, 1, 1)
+
+[node name="Show1" type="HBoxContainer" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer"]
+layout_mode = 2
+
+[node name="Circles" type="CheckButton" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Show1"]
+layout_mode = 2
+button_pressed = true
+text = "Show Circles"
+
+[node name="Lines" type="CheckButton" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Show1"]
+layout_mode = 2
+button_pressed = true
+text = "Show Lines"
+
+[node name="Width" type="HBoxContainer" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Width"]
+layout_mode = 2
+text = "Line Width"
+
+[node name="LineWidth" type="SpinBox" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Width"]
+layout_mode = 2
+min_value = 1.0
+max_value = 16.0
+value = 1.0
+suffix = "px"
+custom_arrow_step = 1.0
+
+[node name="Precision" type="HBoxContainer" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Precision"]
+layout_mode = 2
+text = "Iterations"
+
+[node name="Iterations" type="SpinBox" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Precision"]
+layout_mode = 2
+min_value = 1.0
+max_value = 256.0
+value = 64.0
+update_on_text_changed = true
+custom_arrow_step = 1.0
+
+[node name="Time" type="HBoxContainer" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer"]
+layout_mode = 2
+
+[node name="TimeValue" type="Label" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Time"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Time: 0.000"
+clip_text = true
+
+[node name="SetTime" type="Label" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Time"]
+layout_mode = 2
+text = "Set Time"
+
+[node name="Time" type="SpinBox" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Time"]
+layout_mode = 2
+min_value = -1000.0
+max_value = 1000.0
+step = 0.001
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 0.001
+
+[node name="Speed" type="HBoxContainer" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer"]
+layout_mode = 2
+
+[node name="SpeedValue" type="Label" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Speed"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Speed: 1.0x"
+clip_text = true
+
+[node name="SetSpeed" type="Label" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Speed"]
+layout_mode = 2
+text = "Set Speed"
+
+[node name="Speed" type="SpinBox" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Speed"]
+layout_mode = 2
+min_value = -100.0
+step = 0.001
+value = 1.0
+allow_greater = true
+allow_lesser = true
+custom_arrow_step = 0.001
+
+[node name="Bottom" type="HBoxContainer" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="NewItem" type="Button" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Bottom"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "New"
+
+[node name="RemoveItem" type="Button" parent="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Bottom"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Remove"
+
+[node name="Visual" type="Node2D" parent="."]
+
+[node name="Camera2d" type="Camera2D" parent="Visual"]
+
+[node name="Tracer" type="Line2D" parent="Visual"]
+width = 1.0
+default_color = Color(0.419608, 0.694118, 1, 1)
+
+[connection signal="toggled" from="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Trace/Trace" to="." method="_on_trace_toggled"]
+[connection signal="color_changed" from="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Trace/TraceColor" to="." method="_on_trace_color_color_changed"]
+[connection signal="toggled" from="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Show1/Circles" to="." method="_on_circles_toggled"]
+[connection signal="toggled" from="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Show1/Lines" to="." method="_on_lines_toggled"]
+[connection signal="value_changed" from="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Width/LineWidth" to="." method="_on_thickness_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Precision/Iterations" to="." method="_on_iterations_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Time/Time" to="." method="_on_time_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Speed/Speed" to="." method="_on_speed_value_changed"]
+[connection signal="pressed" from="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Bottom/NewItem" to="." method="_on_NewItem_pressed"]
+[connection signal="pressed" from="CanvasLayer/UI/RightPanel/MarginContainer/MarginContainer/FlowContainer/Bottom/RemoveItem" to="." method="_on_RemoveItem_pressed"]

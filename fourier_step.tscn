@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bw3q3idwwuh3h"]
+
+[node name="FourierStep" type="Node2D"]
+
+[node name="Length" type="Line2D" parent="."]
+width = 2.0
+antialiased = true
+
+[node name="Direction" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 0)
+width = 1.0
+round_precision = 2

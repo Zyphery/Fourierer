@@ -1,0 +1,116 @@
+[gd_scene load_steps=2 format=3 uid="uid://cde2387j0vpqh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fwt0p"]
+bg_color = Color(0.247059, 0.247059, 0.247059, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[node name="Item" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_fwt0p")
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="PropertiesContainer" type="VBoxContainer" parent="Margin"]
+layout_mode = 2
+
+[node name="SpeedContainer" type="HBoxContainer" parent="Margin/PropertiesContainer"]
+layout_mode = 2
+
+[node name="SpeedLabel" type="Label" parent="Margin/PropertiesContainer/SpeedContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Speed"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Speed" type="SpinBox" parent="Margin/PropertiesContainer/SpeedContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = -100.0
+step = 0.001
+value = 1.0
+allow_greater = true
+allow_lesser = true
+update_on_text_changed = true
+suffix = "rad/sec"
+custom_arrow_step = 0.1
+
+[node name="OffsetContainer" type="HBoxContainer" parent="Margin/PropertiesContainer"]
+layout_mode = 2
+
+[node name="OffsetLabel" type="Label" parent="Margin/PropertiesContainer/OffsetContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Offset"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Offset" type="SpinBox" parent="Margin/PropertiesContainer/OffsetContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = -1000.0
+max_value = 1000.0
+step = 0.001
+allow_greater = true
+allow_lesser = true
+update_on_text_changed = true
+suffix = "rad"
+custom_arrow_step = 0.1
+
+[node name="LengthContainer" type="HBoxContainer" parent="Margin/PropertiesContainer"]
+layout_mode = 2
+
+[node name="LengthLabel" type="Label" parent="Margin/PropertiesContainer/LengthContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Length"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Length" type="SpinBox" parent="Margin/PropertiesContainer/LengthContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+min_value = -1000.0
+max_value = 1000.0
+step = 0.001
+value = 15.0
+allow_greater = true
+allow_lesser = true
+update_on_text_changed = true
+suffix = "px"
+custom_arrow_step = 0.1
+
+[node name="Color" type="ColorPickerButton" parent="Margin/PropertiesContainer"]
+layout_mode = 2
+text = " "
+color = Color(0, 0.4, 0.921569, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Item"
